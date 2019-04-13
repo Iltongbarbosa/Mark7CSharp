@@ -63,7 +63,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Login.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\TaskPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaskTestes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
