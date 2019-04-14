@@ -2,34 +2,15 @@
 {
     using Pages;
     using System;
+    using Testes;
     using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
 
     [Category("Login")]
-    public class Login
-    {
-        private ChromeDriver driver;
-        private LoginPage loginPage;
-        private TaskPage taskPage;
+    public class Login : BaseTest
+    { 
         private IWebElement mensagem { get; set; }
-
-        [SetUp]
-        public void SetUp()
-        {
-            driver = new ChromeDriver();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("http://mark7.herokuapp.com/");
-            driver.Manage().Window.Maximize();
-            loginPage = new LoginPage(driver);
-            taskPage = new TaskPage(driver);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            driver.Quit();
-        }
 
         [Test]
         public void SenhaInvalida()
@@ -63,7 +44,7 @@
         public void LoginComSucesso()
         {
             loginPage.Logar("ilton.io@ninja.com.br", "123456");
-            Assert.True(taskPage.BemVindo().Text == "Hello, ilton");
+            Assert.True("Hello, ilton" == taskPage.BemVindo());
         }
     }
 }

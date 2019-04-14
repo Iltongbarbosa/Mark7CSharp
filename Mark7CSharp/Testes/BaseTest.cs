@@ -1,19 +1,16 @@
-﻿namespace Mark7CSharp
+﻿namespace Mark7CSharp.Testes
 {
-
     using Pages;
     using System;
     using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
 
-    [Category("Cadastro Tarefas")]
-    public class TaskTestes
+    public class BaseTest
     {
         private ChromeDriver driver;
-        private LoginPage loginPage;
-        private TaskPage taskPage;
-        private IWebElement mensagem { get; set; }
+        public LoginPage loginPage;
+        public TaskPage taskPage;
 
         [SetUp]
         public void SetUp()
@@ -30,16 +27,6 @@
         public void TearDown()
         {
             driver.Quit();
-        }
-
-        [Test]
-        public void CadastrarTarefas()
-        { string tarefa = "Estudar C#";
-
-            loginPage.Logar("ilton.io@ninja.com.br", "123456");
-            taskPage.CadastrarTarefa(tarefa, "28/10/2019");
-            var res = taskPage.TarefaCadastrada(tarefa);
-            Assert.True(res.Text.Contains(tarefa));
         }
     }
 }
