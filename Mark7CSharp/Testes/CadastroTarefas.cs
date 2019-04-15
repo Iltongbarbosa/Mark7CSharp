@@ -18,7 +18,7 @@
         }
 
         [Test]
-        public void CadastrarTarefas()
+        public void CadastroTarefa()
         {
             var tarefa = new { Titulo = "Estudar C# " + Faker.Name.First(), Data = "28/10/2019" };
 
@@ -29,12 +29,25 @@
         [Test]
         public void TarefaDuplicada()
         {
-            var tarefa = new { Titulo = "Tarefe deve ser Única ", Data = "28/10/2019" }; 
+            var tarefa = new { Titulo = "Tarefe Duplicada " + Faker.Name.First(), Data = "28/10/2019" }; 
+            taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
+            Assert.True("10 caracteres é o mínimo permitido." == taskPage.AltertaRetornoTarefa());
+        }
+
+        [Test]
+        public void TarefaDuplicadaDeveExistirSomenteUmRegistro()
+        {
+            var tarefa = new { Titulo = "Tarefe deve ser Única " + Faker.Name.First(), Data = "28/10/2019" };
             taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
             taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
+            Assert.True(taskPage.RetornaQuantidadeRegistros() == 1);
+        }
 
-            Assert.True("Tarefa duplicada." == taskPage.MensagemTarefaDuplicada() && taskPage.RetornaQuantidadeRegistros() == 1);
-
+        [Test]
+        public void TituloMuitoCurto()
+        {
+            var tarefa = new { Titulo = "Titulo", Data = "28/10/2019" };
+            taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
         }
 
         [Test]

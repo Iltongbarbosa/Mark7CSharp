@@ -67,6 +67,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Testes\BaseTest.cs" />
+    <Compile Include="Testes\ExclusaoTarefas.cs" />
     <Compile Include="Testes\Login.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\TaskPage.cs" />

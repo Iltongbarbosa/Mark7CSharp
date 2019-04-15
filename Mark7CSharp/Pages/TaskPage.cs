@@ -17,9 +17,10 @@
         [FindsBy(How = How.CssSelector, Using = "#task-board .panel-body h3")]
         private IWebElement MensagemBemVindo;
 
-        public string BemVindo()
+        public IWebElement BemVindo()
         {
-            return MensagemBemVindo.Text;
+            return _driver.FindElement(By.CssSelector("#task-board .panel-body h3"));
+
         }
 
         public void CadastrarTarefa(string tarefa, string dataEntrega)
@@ -44,9 +45,11 @@
             return alvo;
         }
 
-        public string MensagemTarefaDuplicada()
+        public string AltertaRetornoTarefa()
         {
-            return _driver.FindElement(By.CssSelector(".alert-warn.panel .panel-body")).Text;
+            var res =  _driver.FindElement(By.CssSelector(".alert-warn.panel .panel-body")).Text;
+            Voltar();
+            return res;
         }
 
         public string BuscarTarefa(string tarefa)
@@ -72,12 +75,33 @@
         }
 
 
-        public IWebElement RemoverTarefa(string tarefa)
+        public void Voltar()
+        {
+            _driver.FindElement(By.Id("form-cancel-button")).Click();
+        }
+
+        public IWebElement BuscarRemoverUmaTarefa(string tarefa)
         {
             _driver.FindElement(By.Id("search-input")).SendKeys(tarefa);
             _driver.FindElement(By.Id("search-button")).Click();
             _driver.FindElement(By.Id("delete - button")).Click();
             return null;
+        }
+
+        public void RemoverTarefaGrid(string tarefa)
+        {
+            var res = this.TarefaCadastrada(tarefa);
+            res.FindElement(By.Id("delete-button")).Click();
+        }
+
+        public void ConfirmarRemocaoTarefa()
+        {
+            _driver.FindElement(By.CssSelector(".modal-content button[data-bb-handler=success")).Click();
+        }
+
+        public void DesistirRemocaoTarefa()
+        {
+            _driver.FindElement(By.CssSelector(".modal-content button[data-bb-handler=danger")).Click();
         }
     }
 }

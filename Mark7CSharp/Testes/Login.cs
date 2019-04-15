@@ -44,7 +44,7 @@
         public void LoginComSucesso()
         {
             loginPage.Logar("ilton.io@ninja.com.br", "123456");
-            Assert.True("Hello, ilton" == taskPage.BemVindo());
+            Assert.True("Hello, ilton" == taskPage.BemVindo().Text);
         }
     }
 }
