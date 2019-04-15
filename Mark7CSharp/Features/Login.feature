@@ -12,19 +12,13 @@ Funcionalidade: Login
 
     @loginFalha
     Esquema do Cenário: Tentativa de logar
-        Quando faço login com email e senha
-		 | email                               | senha   |
-		 | ilton.io@ninja.com.br               | 654321  |
-		 | joao.das.neves@dancadascadeiras.org | xpto123 |
-		 | ilton&qaninja.io                    | 123456  |
-		 |                                     | xpto123 |
-		 | ilton.io@ninja.com.br               |         |
-		 |                                     |         |
-		Então devo ver a mensagem de alerta saida
-		| saida                |
-		| Incorrect password   |
-		| User not found       |
-		| User not found       |
-		| Email is required    |
-		| Password is required |
-		| Email is required    |
+        Quando faço login com '<email>' e '<senha>'
+        Então devo ver a mensagem de alerta '<saida>'
+		Exemplos:
+        | email                               | senha   | saida                |
+        | ilton.io@ninja.com.br               | 654321  | Incorrect password   |
+        | joao.das.neves@dancadascadeiras.org | xpto123 | User not found       |
+        | ilton&qaninja.io                    | 123456  | User not found       |
+        |                                     | xpto123 | Email is required    |
+        | ilton.io@ninja.com.br               |         | Password is required |
+        |                                     |         | Email is required    |
