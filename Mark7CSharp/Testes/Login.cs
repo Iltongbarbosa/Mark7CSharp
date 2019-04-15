@@ -7,7 +7,7 @@
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
 
-    [Category("Login")]
+    //[Category("Login")]
     public class Login : BaseTest
     { 
         private IWebElement mensagem { get; set; }

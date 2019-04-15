@@ -4,7 +4,7 @@
     using NUnit.Framework;
     using OpenQA.Selenium.Support.PageObjects;
 
-    [Category("Exclusão de tarefas s")]
+    //[Category("Exclusão de tarefas s")]
     public class ExclusaoTarefas : BaseTest
     {
         private IWebElement mensagem { get; set; }

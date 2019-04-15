@@ -6,7 +6,7 @@
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
 
-    [Category("Cadastro Tarefas")]
+    //[Category("Cadastro Tarefas")]
     public class CadastroTarefas : BaseTest
     {
         private IWebElement mensagem { get; set; }

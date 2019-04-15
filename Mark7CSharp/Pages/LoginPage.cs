@@ -4,7 +4,7 @@
 
     public class LoginPage
     {
-        private readonly IWebDriver _driver;
+        public readonly IWebDriver _driver;
 
         public LoginPage(IWebDriver driver)
         {
