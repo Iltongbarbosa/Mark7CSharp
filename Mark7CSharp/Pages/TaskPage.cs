@@ -14,9 +14,6 @@
             _driver = driver;
         }
 
-        [FindsBy(How = How.CssSelector, Using = "#task-board .panel-body h3")]
-        private IWebElement MensagemBemVindo;
-
         public IWebElement BemVindo()
         {
             return _driver.FindElement(By.CssSelector("#task-board .panel-body h3"));

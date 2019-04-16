@@ -91,28 +91,54 @@ namespace Mark7CSharp.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Tentativa de logar")]
         [NUnit.Framework.CategoryAttribute("loginFalha")]
-        [NUnit.Framework.TestCaseAttribute("ilton.io@ninja.com.br", "654321", "Incorrect password", null)]
-        [NUnit.Framework.TestCaseAttribute("joao.das.neves@dancadascadeiras.org", "xpto123", "User not found", null)]
-        [NUnit.Framework.TestCaseAttribute("ilton&qaninja.io", "123456", "User not found", null)]
-        [NUnit.Framework.TestCaseAttribute("", "xpto123", "Email is required", null)]
-        [NUnit.Framework.TestCaseAttribute("ilton.io@ninja.com.br", "", "Password is required", null)]
-        [NUnit.Framework.TestCaseAttribute("", "", "Email is required", null)]
-        public virtual void TentativaDeLogar(string email, string senha, string saida, string[] exampleTags)
+        public virtual void TentativaDeLogar()
         {
-            string[] @__tags = new string[] {
-                    "loginFalha"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tentativa de logar", null, @__tags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tentativa de logar", null, new string[] {
+                        "loginFalha"});
 #line 14
     this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "email",
+                        "senha"});
+            table1.AddRow(new string[] {
+                        "ilton.io@ninja.com.br",
+                        "654321"});
+            table1.AddRow(new string[] {
+                        "joao.das.neves@dancadascadeiras.org",
+                        "xpto123"});
+            table1.AddRow(new string[] {
+                        "ilton&qaninja.io",
+                        "123456"});
+            table1.AddRow(new string[] {
+                        "",
+                        "xpto123"});
+            table1.AddRow(new string[] {
+                        "ilton.io@ninja.com.br",
+                        ""});
+            table1.AddRow(new string[] {
+                        "",
+                        ""});
 #line 15
-        testRunner.When(string.Format("faço login com \'{0}\' e \'{1}\'", email, senha), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
-#line 16
-        testRunner.Then(string.Format("devo ver a mensagem de alerta \'{0}\'", saida), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+        testRunner.When("faço login com email e senha:", ((string)(null)), table1, "Quando ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "saida"});
+            table2.AddRow(new string[] {
+                        "Incorrect password"});
+            table2.AddRow(new string[] {
+                        "User not found"});
+            table2.AddRow(new string[] {
+                        "Email is required"});
+            table2.AddRow(new string[] {
+                        "Email is required"});
+            table2.AddRow(new string[] {
+                        "Password is required"});
+            table2.AddRow(new string[] {
+                        "Email is required"});
+#line 23
+        testRunner.Then("devo ver a mensagem de alerta saida:", ((string)(null)), table2, "Então ");
 #line hidden
             this.ScenarioCleanup();
         }
