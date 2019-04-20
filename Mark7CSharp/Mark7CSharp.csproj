@@ -98,11 +98,17 @@
   <ItemGroup>
     <Compile Include="Common\BaseSteps.cs" />
     <Compile Include="Common\Utlis.cs" />
+    <Compile Include="Features\CriarTarefas.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CriarTarefas.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
+    <Compile Include="StepsDefinitions\CriarTarefasSteps.cs" />
     <Compile Include="StepsDefinitions\LoginSteps.cs" />
     <Compile Include="Testes\BaseTest.cs" />
     <Compile Include="Testes\ExclusaoTarefas.cs" />
@@ -114,6 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\CriarTarefas.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CriarTarefas.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>

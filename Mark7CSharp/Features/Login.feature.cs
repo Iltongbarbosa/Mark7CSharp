@@ -19,6 +19,7 @@ namespace Mark7CSharp.Features
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Login")]
+    [NUnit.Framework.CategoryAttribute("Login")]
     public partial class LoginFeature
     {
         
@@ -32,7 +33,8 @@ namespace Mark7CSharp.Features
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("pt"), "Login", "    Para que somente eu possa ver as minhas tarefas\r\n    Sendo um usuário cadastr" +
-                    "ado\r\n    Posso logar no sistema", ProgrammingLanguage.CSharp, ((string[])(null)));
+                    "ado\r\n    Posso logar no sistema", ProgrammingLanguage.CSharp, new string[] {
+                        "Login"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -71,74 +73,47 @@ namespace Mark7CSharp.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login do usuário")]
-        [NUnit.Framework.CategoryAttribute("login")]
-        public virtual void LoginDoUsuario()
+        [NUnit.Framework.DescriptionAttribute("Login com sucesso")]
+        [NUnit.Framework.CategoryAttribute("loginComSucesso")]
+        public virtual void LoginComSucesso()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login do usuário", null, new string[] {
-                        "login"});
-#line 9
-    this.ScenarioInitialize(scenarioInfo);
-            this.ScenarioStart();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login com sucesso", null, new string[] {
+                        "loginComSucesso"});
 #line 10
-        testRunner.When("faço login com \'ilton.io@ninja.com.br \' e \'123456\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+ this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
 #line 11
-        testRunner.Then("sou redirecionado para o painel de tarefas com a mensagem \'Hello, ilton\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
+   testRunner.When("faço login com \'ilton.io@ninja.com.br\' e \'pwd123\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 12
+   testRunner.Then("sou redirecionado para o painel de tarefas com a mensagem \'Hello, ilton\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Tentativa de logar")]
-        [NUnit.Framework.CategoryAttribute("loginFalha")]
-        public virtual void TentativaDeLogar()
+        [NUnit.Framework.CategoryAttribute("LiginInvalido")]
+        [NUnit.Framework.TestCaseAttribute("\'ilton.io@ninja.com.br\'", "\'pwd321\'", "\'Incorrect password\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'joao.das.neves@dancadascadeiras.org\'", "\'pwd123\'", "\'User not found\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'ilton&qaninja.io\'", "\'pwd123\'", "\'Email is required\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'\'", "\'pwd123\'", "\'Email is required\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'ilton.io@ninja.com.br\'", "\'\'", "\'Password is required\'", null)]
+        public virtual void TentativaDeLogar(string email, string senha, string saida, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tentativa de logar", null, new string[] {
-                        "loginFalha"});
-#line 14
+            string[] @__tags = new string[] {
+                    "LiginInvalido"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Tentativa de logar", null, @__tags);
+#line 15
     this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "email",
-                        "senha"});
-            table1.AddRow(new string[] {
-                        "ilton.io@ninja.com.br",
-                        "654321"});
-            table1.AddRow(new string[] {
-                        "joao.das.neves@dancadascadeiras.org",
-                        "xpto123"});
-            table1.AddRow(new string[] {
-                        "ilton&qaninja.io",
-                        "123456"});
-            table1.AddRow(new string[] {
-                        "",
-                        "xpto123"});
-            table1.AddRow(new string[] {
-                        "ilton.io@ninja.com.br",
-                        ""});
-            table1.AddRow(new string[] {
-                        "",
-                        ""});
-#line 15
-        testRunner.When("faço login com email e senha:", ((string)(null)), table1, "Quando ");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "saida"});
-            table2.AddRow(new string[] {
-                        "Incorrect password"});
-            table2.AddRow(new string[] {
-                        "User not found"});
-            table2.AddRow(new string[] {
-                        "Email is required"});
-            table2.AddRow(new string[] {
-                        "Email is required"});
-            table2.AddRow(new string[] {
-                        "Password is required"});
-            table2.AddRow(new string[] {
-                        "Email is required"});
-#line 23
-        testRunner.Then("devo ver a mensagem de alerta saida:", ((string)(null)), table2, "Então ");
+#line 16
+        testRunner.When(string.Format("faço login com {0} e {1}", email, senha), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Quando ");
+#line 17
+        testRunner.Then(string.Format("devo ver a mensagem de alerta {0}", saida), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Então ");
 #line hidden
             this.ScenarioCleanup();
         }

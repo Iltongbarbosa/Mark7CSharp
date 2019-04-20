@@ -7,15 +7,15 @@
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
 
-    //[Category("Login")]
+    [Category("Login NUnit")]
     public class Login : BaseTest
-    { 
+    {
         private IWebElement mensagem { get; set; }
 
         [Test]
         public void SenhaInvalida()
         {
-            loginPage.Logar("ilton.io@ninja.com.br", "654321");
+            loginPage.Logar("ilton.io@ninja.com.br", "pwd321");
             Assert.True(loginPage.MensagemFalhaLogin().Text == "Incorrect password");
         }
 
@@ -29,7 +29,7 @@
         [Test]
         public void UsuarioNaoInformado()
         {
-            loginPage.Logar("", "123456");
+            loginPage.Logar("", "pwd123");
             Assert.True(loginPage.MensagemFalhaLogin().Text == "Email is required");
         }
 
@@ -43,7 +43,7 @@
         [Test]
         public void LoginComSucesso()
         {
-            loginPage.Logar("ilton.io@ninja.com.br", "123456");
+            loginPage.Logar("ilton.io@ninja.com.br", "pwd123");
             Assert.True("Hello, ilton" == taskPage.BemVindo().Text);
         }
     }

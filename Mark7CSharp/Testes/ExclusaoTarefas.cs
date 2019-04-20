@@ -4,7 +4,7 @@
     using NUnit.Framework;
     using OpenQA.Selenium.Support.PageObjects;
 
-    //[Category("Exclusão de tarefas s")]
+    [Category("Exclusão de tarefas NUnit")]
     public class ExclusaoTarefas : BaseTest
     {
         private IWebElement mensagem { get; set; }
@@ -12,7 +12,7 @@
         [SetUp]
         public void Before()
         {
-            loginPage.Logar("ilton.io@ninja.com.br", "123456");
+            loginPage.Logar("ilton.io@ninja.com.br", "pwd123");
         }
 
         [Test]
@@ -24,7 +24,7 @@
             taskPage.ConfirmarRemocaoTarefa();
             taskPage.BuscarTarefa(tarefa.Titulo);
 
-            Assert.True("Hmm... no tasks found :(" == taskPage.BuscarTarefa(tarefa.Titulo));
+            Assert.True("Hmm... no tasks found :(" == taskPage.RetornoTarefaNaoCadastrada());
         }
 
         [Test]

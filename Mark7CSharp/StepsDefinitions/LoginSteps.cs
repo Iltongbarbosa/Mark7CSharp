@@ -7,9 +7,8 @@
     [Binding]
     public sealed class LoginSteps : BaseSteps
     {
-        static int indexLogin = 0, indexMensagens = 0;
         [When(@"faço login com '(.*)' e '(.*)'")]
-        public void QuandoFacoLoginComE(string email, int senha)
+        public void QuandoFacoLoginComE(string email, string senha)
         {
             loginPage.Logar(email, senha.ToString());
         }
@@ -20,23 +19,10 @@
             Assert.True(mensagem == taskPage.BemVindo().Text);
         }
 
-        [When(@"faço login com email e senha:")]
-        public void QuandoFacoLoginComEmailESenha(Table tbDadosUsuario)
+        [Then(@"devo ver a mensagem de alerta '(.*)'")]
+        public void EntaoDevoVerAMensagemDeAlerta(string mensagem)
         {
-            string email ="", senha = "";
-            tbDadosUsuario.Rows[indexLogin].TryGetValue("email", out email);
-            tbDadosUsuario.Rows[indexLogin].TryGetValue("senha", out senha);
-            loginPage.Logar(email, senha.ToString());
-            indexLogin++;
-        }
-
-        [Then(@"devo ver a mensagem de alerta saida:")]
-        public void EntaoDevoVerAMensagemDeAlertaSaida(Table tbMensagem)
-        {
-            string mensagem = "";
-            tbMensagem.Rows[indexMensagens].TryGetValue("saida", out mensagem);
             Assert.True(loginPage.MensagemFalhaLogin().Text == mensagem);
-            indexMensagens++;
         }
 
     }

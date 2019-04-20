@@ -3,7 +3,9 @@
     using OpenQA.Selenium;
     using System;
     using System.Linq;
-    using OpenQA.Selenium.Support.PageObjects;
+    using StepsDefinitions;
+    using System.Threading;
+    using TechTalk.SpecFlow;
 
     public class TaskPage
     {
@@ -29,6 +31,30 @@
             _driver.FindElement(By.CssSelector("button[type=submit]")).Click();
         }
 
+        public void CadastrarTarefa2(Tarefa tarefa)
+        {
+            _driver.FindElement(By.Id("insert-button")).Click();
+
+            _driver.FindElement(By.CssSelector("input[name=title]")).SendKeys(tarefa.Titulo);
+            _driver.FindElement(By.CssSelector("input[name=dueDate]")).SendKeys(tarefa.Data);
+        }
+
+        public void TaguearCadastrarTarefa(Table tags)
+        {
+            var campoTag = _driver.FindElement(By.CssSelector(".bootstrap-tagsinput input"));
+            foreach (var item in tags.Rows)
+            {
+                campoTag.SendKeys(item["Tag"]);
+                campoTag.SendKeys(Keys.Tab);
+                Thread.Sleep(500);
+            }
+        }
+
+        public void SalvarTarefa()
+        {
+            _driver.FindElement(By.CssSelector("button[type=submit]")).Click();
+        }
+
         public IWebElement TarefaCadastrada(string tarefa)
         {
             var trs = _driver.FindElements(By.CssSelector("table tbody tr"));
@@ -49,12 +75,20 @@
             return res;
         }
 
-        public string BuscarTarefa(string tarefa)
+        public void BuscarTarefa(string tarefa)
         {
             _driver.FindElement(By.Id("search-input")).SendKeys(tarefa); ;
             _driver.FindElement(By.Id("search-button")).Click();
-  
-            return _driver.FindElement(By.CssSelector("#task-board .panel.panel-filled.panel-c-warning")).Text;
+        }
+
+        public string RetornoBuscarTarefaCadastrada()
+        {
+            return _driver.FindElement(By.CssSelector("#task-board table tbody tr")).Text;
+        }
+
+        public string RetornoTarefaNaoCadastrada()
+        {
+            return _driver.FindElement(By.CssSelector("#task-board .panel-c-warning .panel-body")).Text;
         }
 
         public int RetornaQuantidadeRegistros()

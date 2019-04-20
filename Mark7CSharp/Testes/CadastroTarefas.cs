@@ -6,7 +6,7 @@
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
 
-    //[Category("Cadastro Tarefas")]
+    [Category("Cadastro Tarefas NUnit")]
     public class CadastroTarefas : BaseTest
     {
         private IWebElement mensagem { get; set; }
@@ -14,7 +14,7 @@
         [SetUp]
         public void Before()
         {
-            loginPage.Logar("ilton.io@ninja.com.br", "123456");
+            loginPage.Logar("ilton.io@ninja.com.br", "pwd123");
         }
 
         [Test]
@@ -27,19 +27,13 @@
         }
 
         [Test]
-        public void TarefaDuplicada()
-        {
-            var tarefa = new { Titulo = "Tarefe Duplicada " + Faker.Name.First(), Data = "28/10/2019" }; 
-            taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
-            Assert.True("10 caracteres é o mínimo permitido." == taskPage.AltertaRetornoTarefa());
-        }
-
-        [Test]
         public void TarefaDuplicadaDeveExistirSomenteUmRegistro()
         {
             var tarefa = new { Titulo = "Tarefe deve ser Única " + Faker.Name.First(), Data = "28/10/2019" };
             taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
             taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
+            Assert.True("Tarefa duplicada." == taskPage.AltertaRetornoTarefa());
+            taskPage.BuscarTarefa(tarefa.Titulo);
             Assert.True(taskPage.RetornaQuantidadeRegistros() == 1);
         }
 
@@ -48,6 +42,7 @@
         {
             var tarefa = new { Titulo = "Titulo", Data = "28/10/2019" };
             taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
+            Assert.True("10 caracteres é o mínimo permitido." == taskPage.AltertaRetornoTarefa());
         }
 
         [Test]
@@ -57,7 +52,7 @@
             taskPage.CancelarCadastro(tarefa.Titulo, tarefa.Data);
             taskPage.BuscarTarefa(tarefa.Titulo);
 
-            Assert.True("Hmm... no tasks found :(" == taskPage.BuscarTarefa(tarefa.Titulo));
+            Assert.True("Hmm... no tasks found :(" == taskPage.RetornoTarefaNaoCadastrada());
         }
     }
 }
