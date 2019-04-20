@@ -108,8 +108,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\RemoverTarefas.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RemoverTarefas.feature</DependentUpon>
+    </Compile>
     <Compile Include="StepsDefinitions\CriarTarefasSteps.cs" />
     <Compile Include="StepsDefinitions\LoginSteps.cs" />
+    <Compile Include="StepsDefinitions\RemoverTarefasSteps.cs" />
     <Compile Include="Testes\BaseTest.cs" />
     <Compile Include="Testes\ExclusaoTarefas.cs" />
     <Compile Include="Testes\Login.cs" />
@@ -127,6 +133,10 @@
     <None Include="Features\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\RemoverTarefas.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RemoverTarefas.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

@@ -2,7 +2,6 @@
 {
     using Common;
     using TechTalk.SpecFlow;
-    using System.Collections.Generic;
     using NUnit.Framework;
 
     public class Tarefa

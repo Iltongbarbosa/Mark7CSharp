@@ -2,7 +2,6 @@
 {
     using OpenQA.Selenium;
     using NUnit.Framework;
-    using OpenQA.Selenium.Support.PageObjects;
 
     [Category("Exclusão de tarefas NUnit")]
     public class ExclusaoTarefas : BaseTest
@@ -30,7 +29,7 @@
         [Test]
         public void DesistirRemocaoTarefa()
         {
-            var tarefa = new { Titulo = "Tarefa para sera removida " + Faker.Name.First(), Data = "28/10/2019" };
+            var tarefa = new { Titulo = "Tarefa para " + Faker.Name.First(), Data = "28/10/2019" };
             taskPage.CadastrarTarefa(tarefa.Titulo, tarefa.Data);
             taskPage.RemoverTarefaGrid(tarefa.Titulo);
             taskPage.DesistirRemocaoTarefa();
