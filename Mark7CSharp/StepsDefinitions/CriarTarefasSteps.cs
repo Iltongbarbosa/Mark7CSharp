@@ -15,6 +15,7 @@
     public sealed class CriarTarefasSteps : BaseSteps
     {
         public static Tarefa tarefa = new Tarefa();
+        private MongodbHelper mongo;
 
         [Given(@"que estou logado com '(.*)' e '(.*)'")]
         public void DadoQueEstouLogadoComE(string email, string senha)
@@ -25,12 +26,14 @@
         [Given(@"que eu tenho uma tarefa com os seguintes atributos:")]
         public void DadoQueEuTenhoUmaTarefaComOsSeguintesAtributos(Table Dados)
         {
-            
+            mongo = new MongodbHelper();
+
             foreach (var item in Dados.Rows)
             {
                 tarefa.Titulo = item["Titulo"];
                 tarefa.Data = item["Data"];
             }
+            mongo.DeleteByTitle(tarefa.Titulo);
             taskPage.CadastrarTarefa2(tarefa);
         }
 

@@ -48,6 +48,7 @@
         [When(@"eu cancelo esta ação")]
         public void QuandoEuCanceloEstaAcao()
         {
+            taskPage.RemoverTarefaGrid(Titulo);
             taskPage.DesistirRemocaoTarefa();
         }
 

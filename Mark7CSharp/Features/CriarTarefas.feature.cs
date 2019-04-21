@@ -97,7 +97,7 @@ namespace Mark7CSharp.Features
                         "Titulo",
                         "Data"});
             table1.AddRow(new string[] {
-                        "Estudar Csharp Com Specflow",
+                        "Estudar Csharp e Specflow",
                         "31/12/2019"});
 #line 14
         testRunner.Given("que eu tenho uma tarefa com os seguintes atributos:", ((string)(null)), table1, "Dado ");
@@ -139,7 +139,7 @@ namespace Mark7CSharp.Features
                         "Titulo",
                         "Data"});
             table3.AddRow(new string[] {
-                        "Automação Csharp Com Specflow",
+                        "Tarefa duplicada",
                         "31/12/2019"});
 #line 28
         testRunner.Given("que eu tenho uma tarefa com os seguintes atributos:", ((string)(null)), table3, "Dado ");

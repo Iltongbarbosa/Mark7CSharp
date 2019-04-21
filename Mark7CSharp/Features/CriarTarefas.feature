@@ -12,8 +12,8 @@ Funcionalidade: Cadastrar tarefas
     @NovaTarefa
     Cenario: Nova tarefa
         Dado que eu tenho uma tarefa com os seguintes atributos:
-            | Titulo                      | Data       |
-            | Estudar Csharp Com Specflow | 31/12/2019 |
+            | Titulo                    | Data       |
+            | Estudar Csharp e Specflow | 31/12/2019 |
         E eu quero taguear esta tarefa com:
             | Tag         |
             | Csharp      |
@@ -26,8 +26,8 @@ Funcionalidade: Cadastrar tarefas
     @TarefaDuplicada
     Cenario: Tarefa não pode ser duplicada
         Dado que eu tenho uma tarefa com os seguintes atributos:
-            | Titulo                        | Data       |
-            | Automação Csharp Com Specflow | 31/12/2019 |
+            | Titulo           | Data       |
+            | Tarefa duplicada | 31/12/2019 |
         E eu quero taguear esta tarefa com:
             | Tag         |
             | Automação   |
